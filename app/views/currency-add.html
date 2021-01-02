@@ -1,0 +1,74 @@
+<h3>Add Currency Config</h3>
+<hr>
+<div class="card">
+  <div class="card-body"> 
+    <form>
+        <div class="form-row">
+          <div class="col-3">
+            <label for="country">Country</label>
+            <select class="form-control" name="country"
+                        ng-model="country" 
+                        ng-options="item as item.country for item in countries track by item.id"
+                        ng-change="loadCountry()" >
+            </select>
+          </div>
+        </div>
+        <br>
+        <div class="form-row">
+          <div class="col-1">
+            <input type="text" name="code" ng-model="country.code" class="form-control" placeholder="Code" disabled>
+          </div>
+          <div class="col-3">
+            <input type="text" name="currency" ng-model="country.currency" class="form-control" placeholder="Currency" disabled>
+          </div>
+          <div class="col-1">
+            <input type="text" name="symbol" ng-model="country.symbol" class="form-control" placeholder="Symbol" disabled>
+          </div>
+        </div>
+        <br>
+    
+        <div class="form-row">
+          <div class="col-2">
+            <label for="country">Format</label>
+            <select class="form-control" name="format" ng-model="currencyFormat.formatCurrency">
+              <option value="0">Select a value...</option>
+              <option value="1">##,####.##</option>
+              <option value="2">##.####,##</option>
+            </select>
+          </div>
+          <div class="col-2">
+            <label for="">Show Cents</label>
+            <select class="form-control" name="showCents" ng-model="currencyFormat.showCents" >
+              <option value="99">Select a value...</option>
+              <option value="2">True</option>
+              <option value="0">False</option>
+            </select>
+          </div>
+          <div class="col-2">
+            <label for="">Currency shown</label>
+            <select class="form-control" name="symbolc" ng-model="currencyFormat.symbolBefore" >
+              <option value="0">Select a value...</option>
+              <option value="1">After Price</option>
+              <option value="2">Before Price</option>
+            </select>
+          </div>
+          <div class="col-2">
+            <label for="">Show Currency</label>
+            <select class="form-control" name="shown" ng-model="currencyFormat.shownCurrency" >
+              <option value="0">Select a value...</option>
+              <option value="1">Code</option>
+              <option value="2">Symbol</option>
+            </select>
+          </div>
+        </div>
+        <br>
+        <div class="form-row">
+          <div class="col-7">
+            <a ng-href="#!/currency-list" type="button" class="btn btn-primary" style="margin-right: 10px;"> <-Back </a>
+            <button type="button" class="btn btn-primary" ng-click="saveCurrency()">Add -></button>
+          </div>
+        </div>
+      </form>
+    </div>
+</div><br>
+

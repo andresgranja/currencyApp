@@ -1,0 +1,52 @@
+<h3>Currency List</h3>
+<hr>  
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col" ng-class="selectedCls(currencies.country)" ng-click="changeSorting(currencies.country)">Country 
+        <i class="glyphicon glyphicon-sort-by-alphabet-alt" ng-show="sort.descending"></i>
+        <i class="glyphicon glyphicon-sort-by-alphabet" ng-show="!sort.descending"></i>
+      </th> 
+      <th scope="col" ng-class="selectedCls(currencies.currencyDetail)" ng-click="changeSorting(currencies.currencyDetail)">Currency
+        <i class="glyphicon glyphicon-sort-by-alphabet-alt" ng-show="sort.descending"></i>
+        <i class="glyphicon glyphicon-sort-by-alphabet" ng-show="!sort.descending"></i>
+      </th>
+      <th scope="col">Value</th>
+      <th scope="col" style="text-align: center">
+        <a ng-href="#!/currency-add" title="Add config" style="padding-right:10px"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i></a>
+        <a title="Export to Excel"><i ng-click="exportToExcel()" class="glyphicon glyphicon-download-alt" aria-hidden="true"></i></a>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="item in currency | orderBy:sort.column:sort.descending">
+      <td> {{ $index + 1}} </td>
+      <td>
+          {{ item.country }}
+      </td>
+      <td> {{ item.currencyDetail}}</td>
+
+      <td ng-if="item.showCurrency == 1 && item.symbol == 2"> {{ value | currency: item.code: item.showCent | dot2comma: item.format }} </td>
+      <td ng-if="item.showCurrency == 2 && item.symbol == 2"> {{ value | currency: item.showSymbol: item.showCent | dot2comma: item.format }} </td>
+      <td ng-if="item.showCurrency == 1 && item.symbol == 1"> {{ value | currency: ' ' : item.showCent | dot2comma: item.format }} {{ item.code }}</td>
+      <td ng-if="item.showCurrency == 2 && item.symbol == 1"> {{ value | currency: ' ' : item.showCent | dot2comma: item.format }} {{ item.showSymbol }}</td>
+      <td style="text-align: center">
+        <a ng-href="#!/currency-edit/{{ item.idCurrency }}" style="padding-right:10px" title="Edit config"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i></a>
+        <a title="Delete config"><i ng-click="delete(item.idCurrency)" class="glyphicon glyphicon-remove" aria-hidden="true"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-between p-2">  
+</div>
+
+<!-- 
+
+      <td ng-if="item.showCurrency == 1 && item.symbol == 2"> {{ value | awnum: 2: '.': true: 'round': true: true | currency: item.code: item.showCent }} </td>
+      <td ng-if="item.showCurrency == 2 && item.symbol == 2"> {{ value | awnum: 2: '.': true: 'round': true: true | currency: item.showSymbol: item.showCent }} </td>
+      <td ng-if="item.showCurrency == 1 && item.symbol == 1"> {{ value | awnum: 2: '.': true: 'round': true: true | currency: ' ' : item.showCent }} {{ item.code }}</td>
+      <td ng-if="item.showCurrency == 2 && item.symbol == 1"> {{ value | awnum: 2: '.': true: 'round': true: true | currency: ' ' : item.showCent }} {{ item.showSymbol }}</td>
+
+-->
